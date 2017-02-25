@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Circle;
@@ -25,6 +26,7 @@ public class FlappyBird extends ApplicationAdapter {
 	Circle birdCircle;
 	int score = 0;
 	int scoringTube = 0;
+	BitmapFont font;
 
 	int gameState = 0;
 	float gravity = 2;
@@ -48,6 +50,9 @@ public class FlappyBird extends ApplicationAdapter {
 		background = new Texture("bg.png");
 		//shapeRenderer = new ShapeRenderer();
 		birdCircle = new Circle();
+		font = new BitmapFont();
+		font.setColor(Color.WHITE);
+		font.getData().setScale(10);
 
 		birds = new Texture[2];
 		birds[0] = new Texture("bird.png");
@@ -152,6 +157,8 @@ public class FlappyBird extends ApplicationAdapter {
 		}
 
 		batch.draw(birds[flapState], Gdx.graphics.getWidth() / 2 - birds[flapState].getWidth() / 2, birdY);
+
+		font.draw(batch, String.valueOf(score), 100, 200);
 		batch.end();
 
 		birdCircle.set(Gdx.graphics.getWidth() / 2, birdY + birds[flapState].getHeight() / 2, birds[flapState].getWidth() / 2);
