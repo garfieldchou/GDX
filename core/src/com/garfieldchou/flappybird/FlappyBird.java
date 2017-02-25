@@ -23,6 +23,8 @@ public class FlappyBird extends ApplicationAdapter {
 	float birdY = 0;
 	float velocity = 0;
 	Circle birdCircle;
+	int score = 0;
+	int scoringTube = 0;
 
 	int gameState = 0;
 	float gravity = 2;
@@ -80,6 +82,24 @@ public class FlappyBird extends ApplicationAdapter {
 		batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
 		if (gameState != 0) {
+
+			if (tubeX[scoringTube] < Gdx.graphics.getWidth() / 2) {
+
+				score++;
+
+				Gdx.app.log("Score", String.valueOf(score));
+
+				if (scoringTube < numberOfTubes - 1) {
+
+					scoringTube++;
+
+				} else {
+
+					scoringTube = 0;
+
+				}
+
+			}
 
 			if (Gdx.input.justTouched()) {
 
